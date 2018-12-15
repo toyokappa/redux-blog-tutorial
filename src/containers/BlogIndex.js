@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 
 import BlogIndex from "../components/BlogIndex";
+import getBlogList from "../actions/getBlogList";
 
 const mapStateToProps = state => {
   return {
@@ -8,7 +9,15 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    getBlogList: () => {
+      dispatch(getBlogList());
+    }
+  };
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(BlogIndex);
