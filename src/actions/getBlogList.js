@@ -1,5 +1,11 @@
 import { getEntries } from "../apis/contentfulApi";
 
+const startRequest = () => {
+  return {
+    type: "START_REQUEST"
+  };
+};
+
 const receiveData = data => {
   return {
     type: "RECEIVE_DATA",
@@ -9,6 +15,7 @@ const receiveData = data => {
 
 const getBlogList = () => {
   return dispatch => {
+    dispatch(startRequest());
     getEntries().then(res => {
       const blogList = res.data.items;
       dispatch(receiveData(blogList));
