@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 class BlogItem extends Component {
   render() {
@@ -8,8 +9,8 @@ class BlogItem extends Component {
       <>
         <h1>{blogItem.fields.title}</h1>
         <div>
-          <span>作成日: {blogItem.sys.createdAt}</span>
-          <span>更新日: {blogItem.sys.updatedAt}</span>
+          <span>作成日: {moment(blogItem.sys.createdAt).format("YYYY.MM.DD HH:mm")}</span>
+          <span>更新日: {moment(blogItem.sys.updatedAt).format("YYYY.MM.DD HH:mm")}</span>
         </div>
         <div>{blogItem.fields.body}</div>
       </>
