@@ -10,4 +10,18 @@ const getEntries = () => {
   });
 };
 
-export { getEntries };
+const getEntry = entryId => {
+  const url = `https://cdn.contentful.com/spaces/${spaceId}/entries/${entryId}`;
+  return axios.get(url, {
+    headers: { Authorization: `Bearer ${accessToken}` }
+  });
+};
+
+const getAsset = assetId => {
+  const url = `https://cdn.contentful.com/spaces/${spaceId}/assets/${assetId}`;
+  return axios.get(url, {
+    headers: { Authorization: `Bearer ${accessToken}` }
+  });
+};
+
+export { getEntries, getEntry, getAsset };

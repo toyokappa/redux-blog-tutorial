@@ -1,18 +1,23 @@
 import { connect } from "react-redux";
 
 import BlogItem from "../components/BlogItem";
+import getBlogItem from "../actions/getBlogItem";
 
-const mapStateToProps = (state, ownProps) => {
-  const blogItem = state.blogList.list.find(item => {
-    return item.sys.id === ownProps.match.params.id;
-  });
-
+const mapStateToProps = state => {
   return {
-    blogItem: blogItem
+    blogItem: state.blogItem
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getBlogItem: blogId => {
+      dispatch(getBlogItem(blogId));
+    }
   };
 };
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(BlogItem);

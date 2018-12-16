@@ -14,7 +14,6 @@ const history = createBrowserHistory();
 
 const middlewares = [thunk, routerMiddleware(history)];
 const store = createStore(rootReducer(history), applyMiddleware(...middlewares));
-console.log(store.getState());
 
 render(
   <Provider store={store}>

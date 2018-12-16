@@ -5,12 +5,12 @@ const initialState = {
 
 const blogList = (state = initialState, action) => {
   switch (action.type) {
-    case "START_REQUEST":
+    case "REQUEST_BLOG_LIST":
       return {
         isFetching: true
       };
 
-    case "RECEIVE_DATA":
+    case "RECEIVE_BLOG_LIST":
       return {
         isFetching: false,
         list: action.payload

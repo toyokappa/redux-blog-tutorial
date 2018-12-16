@@ -1,24 +1,24 @@
 import { getEntries } from "../apis/contentfulApi";
 
-const startRequest = () => {
+const requestBlogList = () => {
   return {
-    type: "START_REQUEST"
+    type: "REQUEST_BLOG_LIST"
   };
 };
 
-const receiveData = data => {
+const recieveBlogList = blogList => {
   return {
-    type: "RECEIVE_DATA",
-    payload: data
+    type: "RECEIVE_BLOG_LIST",
+    payload: blogList
   };
 };
 
 const getBlogList = () => {
   return dispatch => {
-    dispatch(startRequest());
+    dispatch(requestBlogList());
     getEntries().then(res => {
       const blogList = res.data.items;
-      dispatch(receiveData(blogList));
+      dispatch(recieveBlogList(blogList));
     });
   };
 };
