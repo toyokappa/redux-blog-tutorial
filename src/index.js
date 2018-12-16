@@ -2,19 +2,23 @@ import React from "react";
 import { render } from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import { createBrowserHistory } from "history";
 import thunk from "redux-thunk";
+import { routerMiddleware } from "connected-react-router";
 
-import App from "./components/App";
+import Router from "./components/Router";
 import rootReducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
 
-const middlewares = [thunk];
-const store = createStore(rootReducer, applyMiddleware(...middlewares));
+const history = createBrowserHistory();
+
+const middlewares = [thunk, routerMiddleware(history)];
+const store = createStore(rootReducer(history), applyMiddleware(...middlewares));
 console.log(store.getState());
 
 render(
   <Provider store={store}>
-    <App />
+    <Router history={history} />
   </Provider>,
   document.getElementById("root")
 );
