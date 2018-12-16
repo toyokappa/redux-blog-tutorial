@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class BlogIndex extends Component {
   componentDidMount() {
@@ -11,7 +12,11 @@ class BlogIndex extends Component {
     if (isFetching) return <p>Loading...</p>;
 
     const blogIndex = list.map(blogItem => {
-      return <li key={blogItem.sys.id}>{blogItem.fields.title}</li>;
+      return (
+        <li key={blogItem.sys.id}>
+          <Link to={`/${blogItem.sys.id}`}>{blogItem.fields.title}</Link>
+        </li>
+      );
     });
     return <ul>{blogIndex}</ul>;
   }

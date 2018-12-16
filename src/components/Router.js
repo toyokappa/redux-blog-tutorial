@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 
 import BlogIndex from "../containers/BlogIndex";
+import BlogItem from "../containers/BlogItem";
 
 const Router = props => {
   const { history } = props;
@@ -11,6 +12,7 @@ const Router = props => {
     <ConnectedRouter history={history}>
       <Switch>
         <Route exact path="/" component={BlogIndex} />
+        <Route exact path="/:id" component={BlogItem} />
       </Switch>
     </ConnectedRouter>
   );
