@@ -7,6 +7,7 @@ import thunk from "redux-thunk";
 import { routerMiddleware } from "connected-react-router";
 
 import Router from "./Router";
+import { BaseStyles } from "./constants/styles";
 import rootReducer from "./reducers";
 import * as serviceWorker from "./serviceWorker";
 
@@ -16,9 +17,12 @@ const middlewares = [thunk, routerMiddleware(history)];
 const store = createStore(rootReducer(history), applyMiddleware(...middlewares));
 
 render(
-  <Provider store={store}>
-    <Router history={history} />
-  </Provider>,
+  <>
+    <BaseStyles />
+    <Provider store={store}>
+      <Router history={history} />
+    </Provider>
+  </>,
   document.getElementById("root")
 );
 
