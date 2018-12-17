@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import BlogItem from "../components/BlogItem";
+import BlogItem from "../components/pages/BlogItem";
 import getBlogItem from "../actions/getBlogItem";
 
 const mapStateToProps = state => {

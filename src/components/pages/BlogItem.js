@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-import Markdown from "./Markdown";
+import BaseLayout from "../templates/BaseLayout";
+import { Markdown } from "../atoms/Common";
 
 class BlogItem extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class BlogItem extends Component {
     if (isFetching) return <p>Loading...</p>;
 
     return (
-      <>
+      <BaseLayout>
         <Link to="/">戻る</Link>
         <h1>{item.fields.title}</h1>
         <img src={eyeCatch} alt="eye_catch" />
@@ -25,7 +26,7 @@ class BlogItem extends Component {
           <span>更新日: {moment(item.sys.updatedAt).format("YYYY.MM.DD HH:mm")}</span>
         </div>
         <Markdown body={item.fields.body} />
-      </>
+      </BaseLayout>
     );
   }
 }

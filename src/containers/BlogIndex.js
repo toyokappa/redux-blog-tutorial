@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import BlogIndex from "../components/BlogIndex";
+import BlogIndex from "../components/pages/BlogIndex";
 import getBlogList from "../actions/getBlogList";
 
 const mapStateToProps = state => {

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import BaseLayout from "../templates/BaseLayout";
+
 class BlogIndex extends Component {
   componentDidMount() {
     const { getBlogList } = this.props;
@@ -18,7 +20,11 @@ class BlogIndex extends Component {
         </li>
       );
     });
-    return <ul>{blogIndex}</ul>;
+    return (
+      <BaseLayout>
+        <ul>{blogIndex}</ul>
+      </BaseLayout>
+    );
   }
 }
 
