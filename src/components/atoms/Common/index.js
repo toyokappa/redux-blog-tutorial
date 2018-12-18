@@ -1,3 +1,4 @@
+import Logo from "./Logo";
 import Markdown from "./Markdown";
 
-export { Markdown };
+export { Logo, Markdown };
