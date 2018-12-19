@@ -7,20 +7,19 @@ import { Markdown } from "../atoms/Common";
 
 class BlogItem extends Component {
   componentDidMount() {
-    const { getBlogItem } = this.props;
+    const { requestBlogItem } = this.props;
     const { id } = this.props.match.params;
-    getBlogItem(id);
+    requestBlogItem(id);
   }
 
   render() {
-    const { isFetching, item, eyeCatch } = this.props.blogItem;
+    const { isFetching, item } = this.props;
     if (isFetching) return <p>Loading...</p>;
 
     return (
       <BaseLayout>
         <Link to="/">戻る</Link>
         <h1>{item.fields.title}</h1>
-        <img src={eyeCatch} alt="eye_catch" />
         <div>
           <span>作成日: {moment(item.sys.createdAt).format("YYYY.MM.DD HH:mm")}</span>
           <span>更新日: {moment(item.sys.updatedAt).format("YYYY.MM.DD HH:mm")}</span>

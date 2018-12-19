@@ -1,30 +1,20 @@
-import { getEntry, getAsset } from "../apis/contentfulApi";
-
-const requestBlogItem = () => {
+export function requestBlogItem(entryId) {
   return {
-    type: "REQUEST_BLOG_ITEM"
+    type: "REQUEST_BLOG_ITEM",
+    payload: entryId
   };
-};
+}
 
-const receiveBlogitem = blogItem => {
+export function successBlogItem(payload) {
   return {
-    type: "RECEIVE_BLOG_ITEM",
-    payload: blogItem
+    type: "SUCCESS_BLOG_ITEM",
+    payload: payload
   };
-};
+}
 
-const getBlogItem = blogId => {
-  return async dispatch => {
-    dispatch(requestBlogItem);
-    const entryRes = await getEntry(blogId);
-    const eyeCatchId = entryRes.data.fields.eyeCatch.sys.id;
-    const eyeCatchRes = await getAsset(eyeCatchId);
-    const blogItem = {
-      item: entryRes.data,
-      eyeCatch: eyeCatchRes.data.fields.file.url
-    };
-    dispatch(receiveBlogitem(blogItem));
+export function failureBlogItem(error) {
+  return {
+    type: "FAILURE_BLOG_ITEM",
+    error: error
   };
-};
-
-export default getBlogItem;
+}

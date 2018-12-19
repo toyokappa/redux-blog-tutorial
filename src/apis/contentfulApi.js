@@ -14,18 +14,22 @@ export function getEntries() {
     .catch(error => ({ error }));
 }
 
-const getEntry = entryId => {
+export function getEntry(entryId) {
   const url = `${apiBase}spaces/${spaceId}/entries/${entryId}`;
-  return axios.get(url, {
-    headers: { Authorization: `Bearer ${accessToken}` }
-  });
-};
+  return axios
+    .get(url, {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    })
+    .then(payload => ({ payload }))
+    .catch(error => ({ error }));
+}
 
-const getAsset = assetId => {
+export function getAsset(assetId) {
   const url = `${apiBase}spaces/${spaceId}/assets/${assetId}`;
-  return axios.get(url, {
-    headers: { Authorization: `Bearer ${accessToken}` }
-  });
-};
-
-export { getEntry, getAsset };
+  return axios
+    .get(url, {
+      headers: { Authorization: `Bearer ${accessToken}` }
+    })
+    .then(payload => ({ payload }))
+    .catch(error => ({ error }));
+}

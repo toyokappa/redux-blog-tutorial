@@ -1,18 +1,19 @@
 import { connect } from "react-redux";
 
 import BlogItem from "../components/pages/BlogItem";
-import getBlogItem from "../actions/getBlogItem";
+import { requestBlogItem } from "../actions/getBlogItem";
 
 const mapStateToProps = state => {
   return {
-    blogItem: state.blogItem
+    item: state.blogItem.item,
+    isFetching: state.blogItem.isFetching
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getBlogItem: blogId => {
-      dispatch(getBlogItem(blogId));
+    requestBlogItem: entryId => {
+      dispatch(requestBlogItem(entryId));
     }
   };
 };
