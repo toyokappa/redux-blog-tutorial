@@ -1,26 +1,19 @@
-import { getEntries } from "../apis/contentfulApi";
-
-const requestBlogList = () => {
+export function requestBlogList() {
   return {
     type: "REQUEST_BLOG_LIST"
   };
-};
+}
 
-const recieveBlogList = blogList => {
+export function successBlogList(payload) {
   return {
-    type: "RECEIVE_BLOG_LIST",
-    payload: blogList
+    type: "SUCCESS_BLOG_LIST",
+    payload: payload
   };
-};
+}
 
-const getBlogList = () => {
-  return dispatch => {
-    dispatch(requestBlogList());
-    getEntries().then(res => {
-      const blogList = res.data.items;
-      dispatch(recieveBlogList(blogList));
-    });
+export function failureBlogList(error) {
+  return {
+    type: "FAILURE_BLOG_LIST",
+    error: error
   };
-};
-
-export default getBlogList;
+}

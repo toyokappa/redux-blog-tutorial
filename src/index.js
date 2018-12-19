@@ -2,19 +2,23 @@ import React from "react";
 import { render } from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import createSagaMiddleware from "redux-saga";
 import { createBrowserHistory } from "history";
-import thunk from "redux-thunk";
 import { routerMiddleware } from "connected-react-router";
 
 import Router from "./Router";
 import { BaseStyles } from "./constants/styles";
 import rootReducer from "./reducers";
+import rootSaga from "./sagas";
 import * as serviceWorker from "./serviceWorker";
 
 const history = createBrowserHistory();
+const sagaMiddleware = createSagaMiddleware();
 
-const middlewares = [thunk, routerMiddleware(history)];
+const middlewares = [sagaMiddleware, routerMiddleware(history)];
 const store = createStore(rootReducer(history), applyMiddleware(...middlewares));
+
+sagaMiddleware.run(rootSaga);
 
 render(
   <>

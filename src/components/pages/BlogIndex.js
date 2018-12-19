@@ -5,12 +5,12 @@ import BaseLayout from "../templates/BaseLayout";
 
 class BlogIndex extends Component {
   componentDidMount() {
-    const { getBlogList } = this.props;
-    getBlogList();
+    const { requestBlogList } = this.props;
+    requestBlogList();
   }
 
   render() {
-    const { isFetching, list } = this.props.blogList;
+    const { list, isFetching } = this.props;
     if (isFetching) return <p>Loading...</p>;
 
     const blogIndex = list.map(blogItem => {
