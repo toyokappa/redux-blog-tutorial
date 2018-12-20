@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 
 import Blog from "./containers/Blog";
-import BlogItem from "./containers/BlogItem";
+import Post from "./containers/Post";
 
 const Router = props => {
   const { history } = props;
@@ -12,7 +12,7 @@ const Router = props => {
     <ConnectedRouter history={history}>
       <Switch>
         <Route exact path="/" component={Blog} />
-        <Route exact path="/:id" component={BlogItem} />
+        <Route exact path="/:id" component={Post} />
       </Switch>
     </ConnectedRouter>
   );
