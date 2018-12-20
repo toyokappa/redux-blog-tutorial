@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
+import rootActions from "../actions";
 import Post from "../components/pages/Post";
-import { requestPost } from "../actions/post";
 
 const mapStateToProps = state => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     requestPost: postId => {
-      dispatch(requestPost(postId));
+      dispatch(rootActions.requestPost(postId));
     }
   };
 };

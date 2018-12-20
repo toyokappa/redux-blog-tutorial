@@ -1,6 +1,9 @@
+import { handleActions } from "redux-actions";
+
+import rootActions from "../actions";
 import PostModel from "../models/Post";
 
-const initialState = {
+const defaultState = {
   post: new PostModel(),
   error: null,
   isFetching: false
@@ -16,31 +19,26 @@ function getPostFromApi(post) {
   });
 }
 
-const post = (state = initialState, action) => {
-  switch (action.type) {
-    case "REQUEST_POST":
-      return {
-        ...state,
-        isFetching: true
-      };
+export default handleActions(
+  {
+    [rootActions.requestPost]: state => ({
+      ...state,
+      isFetching: true
+    }),
 
-    case "SUCCESS_POST":
-      return {
-        ...state,
-        post: getPostFromApi(action.payload.data),
-        isFetching: false
-      };
+    [rootActions.successPost]: (state, { payload }) => ({
+      ...state,
+      post: getPostFromApi(payload.post.data),
+      error: null,
+      isFetching: false
+    }),
 
-    case "FAILURE_POST":
-      return {
-        ...state,
-        isFetching: false,
-        error: action.error
-      };
-
-    default:
-      return state;
-  }
-};
-
-export default post;
+    [rootActions.failurePost]: (state, { payload }) => ({
+      ...state,
+      post: new PostModel(),
+      error: payload,
+      isFetching: false
+    })
+  },
+  defaultState
+);
