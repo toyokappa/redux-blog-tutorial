@@ -1,20 +1,20 @@
 import { call, fork, put, take } from "redux-saga/effects";
 
-import { successBlogList, failureBlogList } from "../actions/getBlogList";
+import { successBlog, failureBlog } from "../actions/blog";
 import * as API from "../apis/contentfulApi";
 
-function* handleRequestBlogList() {
+function* handleRequestBlog() {
   while (true) {
-    yield take("REQUEST_BLOG_LIST");
+    yield take("REQUEST_BLOG");
     const { payload, error } = yield call(API.getEntries);
     if (payload && !error) {
-      yield put(successBlogList(payload));
+      yield put(successBlog(payload));
     } else {
-      yield put(failureBlogList(error));
+      yield put(failureBlog(error));
     }
   }
 }
 
 export default function* rootSaga() {
-  yield fork(handleRequestBlogList);
+  yield fork(handleRequestBlog);
 }

@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
-import blogList from "./blogList";
+import blogReducer from "./blog";
 import blogItem from "./blogItem";
 
-export default history => combineReducers({ router: connectRouter(history), blogList, blogItem });
+export default history => combineReducers({ router: connectRouter(history), blogReducer, blogItem });

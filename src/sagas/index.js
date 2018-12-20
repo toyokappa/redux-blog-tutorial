@@ -1,9 +1,9 @@
 import { fork } from "redux-saga/effects";
 
-import blogListSaga from "./blogList";
+import blogSaga from "./blog";
 import blogItemSage from "./blogItem";
 
 export default function* rootSaga() {
-  yield fork(blogListSaga);
+  yield fork(blogSaga);
   yield fork(blogItemSage);
 }
