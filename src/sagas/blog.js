@@ -1,6 +1,6 @@
 import { call, fork, put, take } from "redux-saga/effects";
 
-import { successBlog, failureBlog } from "../actions/blog";
+import rootActions from "../actions";
 import * as API from "../apis/contentfulApi";
 
 function* handleRequestBlog() {
@@ -8,9 +8,9 @@ function* handleRequestBlog() {
     yield take("REQUEST_BLOG");
     const { payload, error } = yield call(API.getEntries);
     if (payload && !error) {
-      yield put(successBlog(payload));
+      yield put(rootActions.successBlog(payload));
     } else {
-      yield put(failureBlog(error));
+      yield put(rootActions.failureBlog(error));
     }
   }
 }

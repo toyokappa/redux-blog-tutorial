@@ -1,9 +1,11 @@
 import { OrderedMap } from "immutable";
+import { handleActions } from "redux-actions";
 
+import rootActions from "../actions";
 import BlogModel from "../models/Blog";
 import PostModel from "../models/Post";
 
-const initialState = {
+const defaultState = {
   blog: new BlogModel(),
   error: null,
   isFetching: false
@@ -25,33 +27,28 @@ function getPostsFromApi(posts) {
   return postsMap;
 }
 
-const blog = (state = initialState, action) => {
-  switch (action.type) {
-    case "REQUEST_BLOG":
-      return {
-        ...state,
-        isFetching: true
-      };
+export default handleActions(
+  {
+    [rootActions.requestBlog]: state => ({
+      ...state,
+      isFetching: true
+    }),
 
-    case "SUCCESS_BLOG":
+    [rootActions.successBlog]: (state, { payload }) => {
       return {
         ...state,
-        blog: new BlogModel({ posts: getPostsFromApi(action.payload.data.items) }),
+        blog: new BlogModel({ posts: getPostsFromApi(payload.blog.data.items) }),
         error: null,
         isFetching: false
       };
+    },
 
-    case "FAILURE_BLOG":
-      return {
-        ...state,
-        blog: new BlogModel(),
-        error: action.error,
-        isFetching: false
-      };
-
-    default:
-      return state;
-  }
-};
-
-export default blog;
+    [rootActions.failureBlog]: (state, { payload }) => ({
+      ...state,
+      blog: new BlogModel(),
+      error: payload,
+      isFetching: false
+    })
+  },
+  defaultState
+);

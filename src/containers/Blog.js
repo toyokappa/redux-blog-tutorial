@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 
+import rootActions from "../actions";
 import Blog from "../components/pages/Blog";
-import { requestBlog } from "../actions/blog";
 
 const mapStateToProps = state => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     requestBlog: () => {
-      dispatch(requestBlog());
+      dispatch(rootActions.requestBlog());
     }
   };
 };
