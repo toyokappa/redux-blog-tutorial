@@ -18,6 +18,7 @@ class Post extends Component {
     return (
       <BaseLayout>
         <h1>{post.title}</h1>
+        <img src={post.eyeCatchUrl} alt="eye_catch" />
         <div>
           <span>作成日: {moment(post.createdAt).format("YYYY.MM.DD HH:mm")}</span>
           <span>更新日: {moment(post.updatedAt).format("YYYY.MM.DD HH:mm")}</span>
